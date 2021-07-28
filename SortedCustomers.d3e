@@ -1,0 +1,5 @@
+(DataQuery SortedCustomers {
+    query `
+        Customer.all
+    `
+})

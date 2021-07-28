@@ -1,0 +1,31 @@
+(Model Customer {
+    creatable true
+    properties [
+        (name {
+            type ({
+                primitive String
+            })
+            required true
+        })
+        (dob {
+            type ({
+                primitive DateTime
+            })
+            required true
+        })
+        (isUnderAge {
+            type ({
+                primitive Boolean
+            })
+            computed true
+            computation `CustomerUtil.isUnderAge(this)`
+        })
+        (guardian {
+            type ({
+                model #Customer
+            })
+            existsIf `this.isUnderAge`
+            required true
+        })
+    ]
+})

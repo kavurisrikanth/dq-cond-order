@@ -1,0 +1,5 @@
+class CustomerUtil {
+    static Boolean isUnderAge(Customer c) {
+        return false;
+    }
+}

@@ -1,0 +1,8 @@
+(Project DQCondOrder {
+    name 'DQCondOrder'
+    domain 'DQ.CondOrder'
+    package 'DQCondOrder'
+    targets [
+        JavaBackEnd
+    ]
+})
