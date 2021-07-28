@@ -54,7 +54,7 @@ public class D3EWebsocket extends BinaryWebSocketHandler implements WebSocketCon
 	@Autowired
 	private ObjectFactory<EntityHelperService> helperService;
 
-	@Autowired
+//	@Autowired
 	private Map<String, SocketChannel> allChannels;
 
 	@Autowired
@@ -83,7 +83,7 @@ public class D3EWebsocket extends BinaryWebSocketHandler implements WebSocketCon
 	}
 
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(this).setAllowedOrigins("*");
+//		registry.addHandler(this).setAllowedOrigins("*");
 	}
 
 	@Override

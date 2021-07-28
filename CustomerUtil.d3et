@@ -1,5 +1,9 @@
 class CustomerUtil {
     static Boolean isUnderAge(Customer c) {
-        return false;
+        DateTime now = DateTime.now();
+        Integer nowYear = now.year;
+        Integer cYear = c.dob.year;
+        c.ageInYears = nowYear - cYear;
+        return c.ageInYears < 18;
     }
 }

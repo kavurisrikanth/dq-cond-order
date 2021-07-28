@@ -68,7 +68,8 @@ public class ModelSchema1 {
     m.addPrimitive("id", "_id", (s) -> s.getId(), (s, v) -> s.setId(v));
     m.addPrimitive("name", "_name", (s) -> s.getName(), (s, v) -> s.setName(v));
     m.addPrimitive("dob", "_dob", (s) -> s.getDob(), (s, v) -> s.setDob(v));
-    m.addPrimitive("yob", "_yob", (s) -> s.getYob(), (s, v) -> s.setYob(v));
+    m.addPrimitive(
+        "ageInYears", "_age_in_years", (s) -> s.getAgeInYears(), (s, v) -> s.setAgeInYears(v));
     m.addPrimitive(
         "isUnderAge", "_is_under_age", (s) -> s.isIsUnderAge(), (s, v) -> s.setIsUnderAge(v));
     m.addReference(

@@ -1,7 +1,9 @@
 package rest;
 
 import classes.MutateResultStatus;
+import d3e.core.CurrentUser;
 import d3e.core.D3ELogger;
+import d3e.core.ListExt;
 import d3e.core.TransactionWrapper;
 import gqltosql.schema.GraphQLDataFetcher;
 import gqltosql.schema.IModelSchema;
@@ -9,6 +11,9 @@ import graphql.language.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import models.AnonymousUser;
+import models.Customer;
+import models.User;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,9 +126,25 @@ public class NativeMutation extends AbstractQueryService {
             variables);
     D3ELogger.displayGraphQL(field.getName(), query, variables);
     switch (field.getName()) {
+      case "createCustomer":
+        {
+          return createSuccessResult(createCustomer(ctx), field, "Customer");
+        }
     }
     D3ELogger.info("Mutation Not found");
     return null;
+  }
+
+  private Customer createCustomer(GraphQLInputContext ctx) throws Exception {
+    User currentUser = CurrentUser.get();
+    if (!(currentUser instanceof AnonymousUser)) {
+      throw new ValidationFailedException(
+          MutateResultStatus.AuthFail,
+          ListExt.asList("Current user type does not have create permissions for this model."));
+    }
+    Customer newCustomer = ctx.readChild("input", "Customer");
+    this.mutator.save(newCustomer, false);
+    return newCustomer;
   }
 
   private String generateToken() {

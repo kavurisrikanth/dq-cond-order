@@ -72,11 +72,20 @@ type Query
 	getCustomerById ( id: Long ) : Customer
 	getOneTimePasswordById ( id: Long ) : OneTimePassword
 	checkTokenUniqueInOneTimePassword ( oneTimePasswordId: Long token: String ) : Boolean
+	getSortedCustomers : SortedCustomers
 	loginWithOTP ( token: String code: String ) : LoginResult
 }
 
 type Mutation
 {
+	createCustomer ( input: CustomerEntityInput ) : MutateCustomerResult
+}
+
+type MutateCustomerResult
+{
+	status : MutateResultStatus
+	value : Customer
+	errors : [String]
 }
 
 type MutateOneTimePasswordResult
@@ -169,6 +178,7 @@ type Customer
 	localId : Long
 	name : String
 	dob : LocalDateTime
+	ageInYears : Long
 	isUnderAge : Boolean
 	guardian : Customer
 }
@@ -372,6 +382,11 @@ input UserSessionEntityInput
 {
 	id : Long
 	userSessionId : String
+}
+
+type SortedCustomers
+{
+	items : [Customer]
 }
 
 enum MutateResultStatus {

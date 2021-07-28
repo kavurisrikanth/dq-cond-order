@@ -736,6 +736,20 @@
 					"deprecationReason": null
 				},
 				{
+					"name": "getSortedCustomers",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "OBJECT",
+						"name": "SortedCustomers",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
 					"name": "loginWithOTP",
 					"description": "",
 					"args": [
@@ -764,6 +778,101 @@
 						"kind": "OBJECT",
 						"name": "LoginResult",
 						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"inputFields": null,
+			"interfaces": [
+
+			],
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "OBJECT",
+			"name": "Mutation",
+			"description": "",
+			"fields": [
+				{
+					"name": "createCustomer",
+					"description": "",
+					"args": [
+						{
+							"name": "input",
+							"description": "",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "CustomerEntityInput",
+								"ofType": null
+							},
+							"defaultValue": null
+						}
+					],
+					"type": {
+						"kind": "OBJECT",
+						"name": "MutateCustomerResult",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"inputFields": null,
+			"interfaces": [
+
+			],
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "OBJECT",
+			"name": "MutateCustomerResult",
+			"description": "",
+			"fields": [
+				{
+					"name": "status",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "ENUM",
+						"name": "MutateResultStatus",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
+					"name": "value",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "OBJECT",
+						"name": "Customer",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
+					"name": "errors",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "LIST",
+						"name": null,
+						"ofType": {
+							"kind": "SCALAR",
+							"name": "String",
+							"ofType": null
+						}
 					},
 					"isDeprecated": false,
 					"deprecationReason": null
@@ -1566,6 +1675,20 @@
 					"type": {
 						"kind": "SCALAR",
 						"name": "LocalDateTime",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
+					"name": "ageInYears",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "SCALAR",
+						"name": "Long",
 						"ofType": null
 					},
 					"isDeprecated": false,
@@ -3446,6 +3569,37 @@
 				}
 			],
 			"interfaces": null,
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "OBJECT",
+			"name": "SortedCustomers",
+			"description": "",
+			"fields": [
+				{
+					"name": "items",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "LIST",
+						"name": null,
+						"ofType": {
+							"kind": "OBJECT",
+							"name": "Customer",
+							"ofType": null
+						}
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"inputFields": null,
+			"interfaces": [
+
+			],
 			"enumValues": null,
 			"possibleTypes": null
 		}

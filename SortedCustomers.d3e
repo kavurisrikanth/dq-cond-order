@@ -1,5 +1,5 @@
 (DataQuery SortedCustomers {
     query `
-        Customer.all.orderBy((c) => c.yob)
+        Customer.all.orderBy((c) => c.isUnderAge ? c.ageInYears : c.guardian.ageInYears)
     `
 })

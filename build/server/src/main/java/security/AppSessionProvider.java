@@ -64,4 +64,12 @@ public class AppSessionProvider {
     Object principal = auth.getPrincipal();
     return ((UserProxy) principal);
   }
+
+  public AnonymousUser getAnonymousUser() {
+    User user = getCurrentUser();
+    if (user instanceof AnonymousUser) {
+      return ((AnonymousUser) user);
+    }
+    return null;
+  }
 }

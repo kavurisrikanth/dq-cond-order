@@ -40,6 +40,15 @@ public class CustomerEntityHelper<T extends Customer> implements EntityHelper<T>
 
   public void referenceFromValidations(T entity, EntityValidationContext validationContext) {}
 
+  public void validateEntity(
+      T entity, EntityValidationContext validationContext, boolean onCreate, boolean onUpdate) {
+    if (onCreate || onUpdate) {
+      if (!(!entity.isIsUnderAge() || !entity.getGuardian().isIsUnderAge())) {
+        validationContext.addEntityError("Guardian cannot be underage");
+      }
+    }
+  }
+
   public void validateFieldName(
       T entity, EntityValidationContext validationContext, boolean onCreate, boolean onUpdate) {
     String it = entity.getName();
@@ -73,6 +82,7 @@ public class CustomerEntityHelper<T extends Customer> implements EntityHelper<T>
 
   public void validateInternal(
       T entity, EntityValidationContext validationContext, boolean onCreate, boolean onUpdate) {
+    validateEntity(entity, validationContext, onCreate, onUpdate);
     validateFieldName(entity, validationContext, onCreate, onUpdate);
     validateFieldDob(entity, validationContext, onCreate, onUpdate);
     if (isGuardianExists(entity)) {

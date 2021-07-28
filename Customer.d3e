@@ -13,11 +13,11 @@
             })
             required true
         })
-        (yob {
+        (ageInYears {
             type ({
                 primitive Integer
             })
-            readType None
+            readType ReadOnly
         })
         (isUnderAge {
             type ({
@@ -32,6 +32,12 @@
             })
             existsIf `this.isUnderAge`
             required true
+        })
+    ]
+    validations [
+        ({
+            errorMsg 'Guardian cannot be underage'
+            expression `!this.isUnderAge || !this.guardian.isUnderAge`
         })
     ]
 })
