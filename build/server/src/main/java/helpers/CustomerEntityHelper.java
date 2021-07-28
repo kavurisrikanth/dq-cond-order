@@ -43,7 +43,8 @@ public class CustomerEntityHelper<T extends Customer> implements EntityHelper<T>
   public void validateEntity(
       T entity, EntityValidationContext validationContext, boolean onCreate, boolean onUpdate) {
     if (onCreate || onUpdate) {
-      if (!(!entity.isIsUnderAge() || !entity.getGuardian().isIsUnderAge())) {
+      if (!(!entity.isIsUnderAge()
+          || (entity.getGuardian() != null && !entity.getGuardian().isIsUnderAge()))) {
         validationContext.addEntityError("Guardian cannot be underage");
       }
     }

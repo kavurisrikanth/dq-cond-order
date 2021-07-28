@@ -2,9 +2,12 @@ package d3e.core;
 
 import classes.LoginResult;
 import classes.SortedCustomers;
+import classes.SortedCustomersUsingInput;
+import classes.SortedCustomersUsingInputRequest;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import lists.SortedCustomersImpl;
+import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.Customer;
 import models.OneTimePassword;
@@ -36,6 +39,7 @@ public class QueryProvider {
   @Autowired private UserRepository userRepository;
   @Autowired private UserSessionRepository userSessionRepository;
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
+  @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
   @Autowired private ObjectFactory<AppSessionProvider> provider;
 
   @PostConstruct
@@ -68,6 +72,11 @@ public class QueryProvider {
 
   public SortedCustomers getSortedCustomers() {
     return sortedCustomersImpl.get();
+  }
+
+  public SortedCustomersUsingInput getSortedCustomersUsingInput(
+      SortedCustomersUsingInputRequest inputs) {
+    return sortedCustomersUsingInputImpl.get(inputs);
   }
 
   public LoginResult loginWithOTP(String token, String code, String deviceToken) {

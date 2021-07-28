@@ -182,6 +182,23 @@
 		},
 		{
 			"kind": "ENUM",
+			"name": "CustomerSortOptions",
+			"description": "",
+			"fields": null,
+			"inputFields": null,
+			"interfaces": null,
+			"enumValues": [
+				{
+					"name": "AGE",
+					"description": "",
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"possibleTypes": null
+		},
+		{
+			"kind": "ENUM",
 			"name": "ChangeEventType",
 			"description": "",
 			"fields": null,
@@ -744,6 +761,29 @@
 					"type": {
 						"kind": "OBJECT",
 						"name": "SortedCustomers",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
+					"name": "getSortedCustomersUsingInput",
+					"description": "",
+					"args": [
+						{
+							"name": "in",
+							"description": "",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "SortedCustomersUsingInputIn",
+								"ofType": null
+							},
+							"defaultValue": null
+						}
+					],
+					"type": {
+						"kind": "OBJECT",
+						"name": "SortedCustomersUsingInput",
 						"ofType": null
 					},
 					"isDeprecated": false,
@@ -3575,6 +3615,62 @@
 		{
 			"kind": "OBJECT",
 			"name": "SortedCustomers",
+			"description": "",
+			"fields": [
+				{
+					"name": "items",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "LIST",
+						"name": null,
+						"ofType": {
+							"kind": "OBJECT",
+							"name": "Customer",
+							"ofType": null
+						}
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"inputFields": null,
+			"interfaces": [
+
+			],
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "INPUT_OBJECT",
+			"name": "SortedCustomersUsingInputIn",
+			"description": "",
+			"fields": null,
+			"inputFields": [
+				{
+					"name": "sortBy",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "ENUM",
+						"name": "CustomerSortOptions",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"interfaces": null,
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "OBJECT",
+			"name": "SortedCustomersUsingInput",
 			"description": "",
 			"fields": [
 				{

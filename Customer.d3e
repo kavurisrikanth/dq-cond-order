@@ -37,7 +37,7 @@
     validations [
         ({
             errorMsg 'Guardian cannot be underage'
-            expression `!this.isUnderAge || !this.guardian.isUnderAge`
+            expression `!this.isUnderAge || (this.guardian != null && !this.guardian.isUnderAge)`
         })
     ]
 })

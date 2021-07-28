@@ -73,6 +73,7 @@ type Query
 	getOneTimePasswordById ( id: Long ) : OneTimePassword
 	checkTokenUniqueInOneTimePassword ( oneTimePasswordId: Long token: String ) : Boolean
 	getSortedCustomers : SortedCustomers
+	getSortedCustomersUsingInput ( in: SortedCustomersUsingInputIn ) : SortedCustomersUsingInput
 	loginWithOTP ( token: String code: String ) : LoginResult
 }
 
@@ -389,12 +390,26 @@ type SortedCustomers
 	items : [Customer]
 }
 
+input SortedCustomersUsingInputIn
+{
+	sortBy : CustomerSortOptions
+}
+
+type SortedCustomersUsingInput
+{
+	items : [Customer]
+}
+
 enum MutateResultStatus {
 	ServerError
 	Success
 	AuthFail
 	ValidationFail
 	BadRequest
+}
+
+enum CustomerSortOptions {
+	AGE
 }
 
 enum ChangeEventType {
