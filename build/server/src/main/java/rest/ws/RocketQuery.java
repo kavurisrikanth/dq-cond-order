@@ -2,6 +2,7 @@ package rest.ws;
 
 import classes.LoginResult;
 import classes.MutateResultStatus;
+import classes.SortedCustomersUsingInput2Request;
 import classes.SortedCustomersUsingInputRequest;
 import d3e.core.CurrentUser;
 import d3e.core.D3ELogger;
@@ -10,6 +11,7 @@ import gqltosql.GqlToSql;
 import graphql.language.Field;
 import java.util.UUID;
 import lists.SortedCustomersImpl;
+import lists.SortedCustomersUsingInput2Impl;
 import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.OneTimePassword;
@@ -36,6 +38,7 @@ public class RocketQuery extends AbstractRocketQuery {
   @Autowired private OneTimePasswordRepository oneTimePasswordRepository;
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
   @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
+  @Autowired private SortedCustomersUsingInput2Impl sortedCustomersUsingInput2Impl;
 
   protected QueryResult executeOperation(String query, Field field, RocketInputContext ctx)
       throws Exception {
@@ -95,6 +98,19 @@ public class RocketQuery extends AbstractRocketQuery {
               ctx.readObject(SortedCustomersUsingInputRequest.class);
           JSONObject res = sortedCustomersUsingInputImpl.getAsJson(inspect(field, "items"), req);
           return singleResult("SortedCustomersUsingInput", false, res);
+        }
+      case "getSortedCustomersUsingInput2":
+        {
+          if (!(currentUser instanceof AnonymousUser)) {
+            throw new ValidationFailedException(
+                MutateResultStatus.AuthFail,
+                ListExt.asList(
+                    "Current user type does not have read permissions for this DataQuery."));
+          }
+          SortedCustomersUsingInput2Request req =
+              ctx.readObject(SortedCustomersUsingInput2Request.class);
+          JSONObject res = sortedCustomersUsingInput2Impl.getAsJson(inspect(field, "items"), req);
+          return singleResult("SortedCustomersUsingInput2", false, res);
         }
       case "loginWithOTP":
         {

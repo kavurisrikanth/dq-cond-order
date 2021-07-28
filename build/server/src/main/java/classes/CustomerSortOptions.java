@@ -1,5 +1,6 @@
 package classes;
 
 public enum CustomerSortOptions {
-  AGE;
+  AGE,
+  NAME;
 }

@@ -15,5 +15,8 @@
         ({
             query #SortedCustomersUsingInput
         })
+        ({
+            query #SortedCustomersUsingInput2
+        })
     ]
 })

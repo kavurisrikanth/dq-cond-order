@@ -1,5 +1,6 @@
 (OptionSet CustomerSortOptions {
     options [
         (AGE {})
+        (NAME {})
     ]
 })

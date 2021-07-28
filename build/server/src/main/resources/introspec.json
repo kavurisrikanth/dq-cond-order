@@ -193,6 +193,12 @@
 					"description": "",
 					"isDeprecated": false,
 					"deprecationReason": null
+				},
+				{
+					"name": "NAME",
+					"description": "",
+					"isDeprecated": false,
+					"deprecationReason": null
 				}
 			],
 			"possibleTypes": null
@@ -784,6 +790,29 @@
 					"type": {
 						"kind": "OBJECT",
 						"name": "SortedCustomersUsingInput",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				},
+				{
+					"name": "getSortedCustomersUsingInput2",
+					"description": "",
+					"args": [
+						{
+							"name": "in",
+							"description": "",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "SortedCustomersUsingInput2In",
+								"ofType": null
+							},
+							"defaultValue": null
+						}
+					],
+					"type": {
+						"kind": "OBJECT",
+						"name": "SortedCustomersUsingInput2",
 						"ofType": null
 					},
 					"isDeprecated": false,
@@ -3671,6 +3700,62 @@
 		{
 			"kind": "OBJECT",
 			"name": "SortedCustomersUsingInput",
+			"description": "",
+			"fields": [
+				{
+					"name": "items",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "LIST",
+						"name": null,
+						"ofType": {
+							"kind": "OBJECT",
+							"name": "Customer",
+							"ofType": null
+						}
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"inputFields": null,
+			"interfaces": [
+
+			],
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "INPUT_OBJECT",
+			"name": "SortedCustomersUsingInput2In",
+			"description": "",
+			"fields": null,
+			"inputFields": [
+				{
+					"name": "sortBy",
+					"description": "",
+					"args": [
+
+					],
+					"type": {
+						"kind": "ENUM",
+						"name": "CustomerSortOptions",
+						"ofType": null
+					},
+					"isDeprecated": false,
+					"deprecationReason": null
+				}
+			],
+			"interfaces": null,
+			"enumValues": null,
+			"possibleTypes": null
+		},
+		{
+			"kind": "OBJECT",
+			"name": "SortedCustomersUsingInput2",
 			"description": "",
 			"fields": [
 				{

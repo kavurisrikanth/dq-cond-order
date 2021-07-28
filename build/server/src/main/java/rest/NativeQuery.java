@@ -1,6 +1,7 @@
 package rest;
 
 import classes.MutateResultStatus;
+import classes.SortedCustomersUsingInput2Request;
 import classes.SortedCustomersUsingInputRequest;
 import d3e.core.CurrentUser;
 import d3e.core.D3ELogger;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import lists.SortedCustomersImpl;
+import lists.SortedCustomersUsingInput2Impl;
 import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.OneTimePassword;
@@ -62,6 +64,7 @@ public class NativeQuery extends AbstractQueryService {
   @Autowired private ObjectFactory<AppSessionProvider> provider;
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
   @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
+  @Autowired private SortedCustomersUsingInput2Impl sortedCustomersUsingInput2Impl;
 
   @PostMapping(path = "/query", produces = MediaType.APPLICATION_JSON_VALUE)
   public String run(@RequestBody String query) throws Exception {
@@ -163,6 +166,18 @@ public class NativeQuery extends AbstractQueryService {
           SortedCustomersUsingInputRequest req =
               ctx.readInto("in", new SortedCustomersUsingInputRequest());
           return sortedCustomersUsingInputImpl.getAsJson(inspect(field, "items"), req);
+        }
+      case "getSortedCustomersUsingInput2":
+        {
+          if (!(currentUser instanceof AnonymousUser)) {
+            throw new ValidationFailedException(
+                MutateResultStatus.AuthFail,
+                ListExt.asList(
+                    "Current user type does not have read permissions for this DataQuery."));
+          }
+          SortedCustomersUsingInput2Request req =
+              ctx.readInto("in", new SortedCustomersUsingInput2Request());
+          return sortedCustomersUsingInput2Impl.getAsJson(inspect(field, "items"), req);
         }
       case "loginWithOTP":
         {
