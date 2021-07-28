@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import lists.SortedCustomersImpl;
 import lists.SortedCustomersUsingInput2Impl;
+import lists.SortedCustomersUsingInput3Impl;
 import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.OneTimePassword;
@@ -65,6 +66,7 @@ public class NativeQuery extends AbstractQueryService {
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
   @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
   @Autowired private SortedCustomersUsingInput2Impl sortedCustomersUsingInput2Impl;
+  @Autowired private SortedCustomersUsingInput3Impl sortedCustomersUsingInput3Impl;
 
   @PostMapping(path = "/query", produces = MediaType.APPLICATION_JSON_VALUE)
   public String run(@RequestBody String query) throws Exception {

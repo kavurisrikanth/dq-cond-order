@@ -85,12 +85,36 @@ public class SortedCustomersUsingInput2Impl extends AbsDataQueryImpl {
   }
 
   public List<NativeObj> getNativeResult(SortedCustomersUsingInput2Request request) {
-    String sql =
-        "select a._is_under_age a0, b._age_in_years a1, a._age_in_years a2, a._name a3, a._id a4 from _customer a left join _customer b on b._id = a._guardian_id";
+//    String sql =
+//        "select a._is_under_age a0, b._age_in_years a1, a._age_in_years a2, a._name a3, a._id a4 from _customer a left join _customer b on b._id = a._guardian_id";
+    String sql = "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case :param_0 when :param_1 then (case when a._is_under_age then a._age_in_years else b._age_in_years end) END, case :param_0 when :param_2 then a._name END, case when :param_default then a._age_in_years end)";
     Query query = em.createNativeQuery(sql);
+    setParameter(query, "param_0", request.sortBy);
+    setParameter(query, "param_1", CustomerSortOptions.AGE);
+    setParameter(query, "param_2", CustomerSortOptions.NAME);
+    boolean defaultCase = request.sortBy != CustomerSortOptions.AGE && request.sortBy != CustomerSortOptions.NAME;
+    setParameter(query, "param_default", defaultCase);
+//    setParameter(query, "param_def", (Object) null);
     this.logQuery(sql, query);
-    List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 4);
-    processOrderBy(result, request);
+    List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 0);
+//    processOrderBy(result, request);
+    return result;
+  }
+  
+  public List<NativeObj> getNativeResult2(SortedCustomersUsingInput2Request request) {
+//    String sql =
+//        "select a._is_under_age a0, b._age_in_years a1, a._age_in_years a2, a._name a3, a._id a4 from _customer a left join _customer b on b._id = a._guardian_id";
+    String sql = "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case :param_0 when :param_1 then (case when a._is_under_age then a._age_in_years else b._age_in_years end) END, case :param_0 when :param_2 then a._name END, case when :param_default then a._age_in_years end)";
+    Query query = em.createNativeQuery(sql);
+    setParameter(query, "param_0", request.sortBy);
+    setParameter(query, "param_1", CustomerSortOptions.AGE);
+    setParameter(query, "param_2", CustomerSortOptions.NAME);
+    boolean defaultCase = request.sortBy != CustomerSortOptions.AGE && request.sortBy != CustomerSortOptions.NAME;
+    setParameter(query, "param_default", defaultCase);
+//    setParameter(query, "param_def", (Object) null);
+    this.logQuery(sql, query);
+    List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 0);
+//    processOrderBy(result, request);
     return result;
   }
 }

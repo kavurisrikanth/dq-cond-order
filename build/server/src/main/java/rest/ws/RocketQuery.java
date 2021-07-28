@@ -12,6 +12,7 @@ import graphql.language.Field;
 import java.util.UUID;
 import lists.SortedCustomersImpl;
 import lists.SortedCustomersUsingInput2Impl;
+import lists.SortedCustomersUsingInput3Impl;
 import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.OneTimePassword;
@@ -39,6 +40,7 @@ public class RocketQuery extends AbstractRocketQuery {
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
   @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
   @Autowired private SortedCustomersUsingInput2Impl sortedCustomersUsingInput2Impl;
+  @Autowired private SortedCustomersUsingInput3Impl sortedCustomersUsingInput3Impl;
 
   protected QueryResult executeOperation(String query, Field field, RocketInputContext ctx)
       throws Exception {

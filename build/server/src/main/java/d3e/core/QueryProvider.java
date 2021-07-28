@@ -5,11 +5,14 @@ import classes.SortedCustomers;
 import classes.SortedCustomersUsingInput;
 import classes.SortedCustomersUsingInput2;
 import classes.SortedCustomersUsingInput2Request;
+import classes.SortedCustomersUsingInput3;
+import classes.SortedCustomersUsingInput3Request;
 import classes.SortedCustomersUsingInputRequest;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import lists.SortedCustomersImpl;
 import lists.SortedCustomersUsingInput2Impl;
+import lists.SortedCustomersUsingInput3Impl;
 import lists.SortedCustomersUsingInputImpl;
 import models.AnonymousUser;
 import models.Customer;
@@ -44,6 +47,7 @@ public class QueryProvider {
   @Autowired private SortedCustomersImpl sortedCustomersImpl;
   @Autowired private SortedCustomersUsingInputImpl sortedCustomersUsingInputImpl;
   @Autowired private SortedCustomersUsingInput2Impl sortedCustomersUsingInput2Impl;
+  @Autowired private SortedCustomersUsingInput3Impl sortedCustomersUsingInput3Impl;
   @Autowired private ObjectFactory<AppSessionProvider> provider;
 
   @PostConstruct
@@ -86,6 +90,11 @@ public class QueryProvider {
   public SortedCustomersUsingInput2 getSortedCustomersUsingInput2(
       SortedCustomersUsingInput2Request inputs) {
     return sortedCustomersUsingInput2Impl.get(inputs);
+  }
+
+  public SortedCustomersUsingInput3 getSortedCustomersUsingInput3(
+      SortedCustomersUsingInput3Request inputs) {
+    return sortedCustomersUsingInput3Impl.get(inputs);
   }
 
   public LoginResult loginWithOTP(String token, String code, String deviceToken) {

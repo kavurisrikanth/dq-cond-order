@@ -7,6 +7,10 @@
         })
     ]
     query `
-        Customer.all.orderBy((c) => inputs.sortBy == AGE ? (c.isUnderAge ? c.guardian.ageInYears.toString() : c.ageInYears.toString()) : (inputs.sortBy == NAME ? c.name : c.ageInYears.toString()))
+        Customer.all.orderBy((c) => switch (inputs.sortBy) {
+            case AGE: c.isUnderAge ? c.guardian.ageInYears : c.ageInYears
+            case NAME: c.name
+            default: c.ageInYears
+        })
     `
 })

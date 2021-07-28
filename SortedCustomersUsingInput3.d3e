@@ -1,0 +1,12 @@
+(DataQuery SortedCustomersUsingInput3 {
+    inputs [
+        (sortBy {
+            type ({
+                optionSet #CustomerSortOptions
+            })
+        })
+    ]
+    query `
+        inputs.sortBy == AGE ? Customer.all.orderBy((c) => c.isUnderAge ? c.guardian.ageInYears : c.ageInYears) : (inputs.sortBy == NAME ? Customer.all.orderBy((c) => c.name) : Customer.all.orderBy((c) => c.ageInYears))
+    `
+})
