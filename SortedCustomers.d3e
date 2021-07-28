@@ -1,5 +1,5 @@
 (DataQuery SortedCustomers {
     query `
-        Customer.all
+        Customer.all.orderBy((c) => c.yob)
     `
 })

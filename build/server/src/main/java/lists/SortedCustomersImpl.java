@@ -49,7 +49,7 @@ public class SortedCustomersImpl extends AbsDataQueryImpl {
   }
 
   public List<NativeObj> getNativeResult() {
-    String sql = "select a._id a0 from _customer a";
+    String sql = "select a._id a0 from _customer a order by a._yob";
     Query query = em.createNativeQuery(sql);
     this.logQuery(sql, query);
     List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 0);

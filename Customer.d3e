@@ -13,6 +13,12 @@
             })
             required true
         })
+        (yob {
+            type ({
+                primitive Integer
+            })
+            readType None
+        })
         (isUnderAge {
             type ({
                 primitive Boolean

@@ -21,6 +21,10 @@ public class Customer extends CreatableObject {
   @Field @NotNull private LocalDateTime dob;
 
   @Field
+  @ColumnDefault("0")
+  private long yob = 0l;
+
+  @Field
   @ColumnDefault("false")
   private boolean isUnderAge = false;
 
@@ -50,6 +54,15 @@ public class Customer extends CreatableObject {
   public void setDob(LocalDateTime dob) {
     onPropertySet();
     this.dob = dob;
+  }
+
+  public long getYob() {
+    return this.yob;
+  }
+
+  public void setYob(long yob) {
+    onPropertySet();
+    this.yob = yob;
   }
 
   public boolean isIsUnderAge() {
@@ -97,6 +110,7 @@ public class Customer extends CreatableObject {
     Customer _obj = ((Customer) dbObj);
     _obj.setName(name);
     _obj.setDob(dob);
+    _obj.setYob(yob);
     _obj.setIsUnderAge(isUnderAge);
     _obj.setGuardian(guardian);
   }
@@ -108,6 +122,7 @@ public class Customer extends CreatableObject {
     super.cloneInstance(cloneObj);
     cloneObj.setName(this.getName());
     cloneObj.setDob(this.getDob());
+    cloneObj.setYob(this.getYob());
     cloneObj.setIsUnderAge(this.isIsUnderAge());
     cloneObj.setGuardian(this.getGuardian());
     return cloneObj;
