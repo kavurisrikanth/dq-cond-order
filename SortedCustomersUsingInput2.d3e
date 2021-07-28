@@ -7,6 +7,6 @@
         })
     ]
     query `
-        Customer.all.orderBy((c) => inputs.sortBy == AGE ? (c.isUnderAge ? c.ageInYears : c.guardian.ageInYears) : (inputs.sortBy == NAME ? c.name : c.ageInYears))
+        Customer.all.orderBy((c) => inputs.sortBy == AGE ? (c.isUnderAge ? c.guardian.ageInYears.toString() : c.ageInYears.toString()) : (inputs.sortBy == NAME ? c.name : c.ageInYears.toString()))
     `
 })
