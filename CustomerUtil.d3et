@@ -6,9 +6,4 @@ class CustomerUtil {
         c.ageInYears = nowYear - cYear;
         return c.ageInYears < 18;
     }
-
-    static Comparable<Object> getOrderBy(Customer c, SortedCustomersUsingInput3Request _in) {
-        CustomerSortOptions sortBy = _in.sortBy;
-        return sortBy == AGE ? (c.isUnderAge ? c.guardian.ageInYears : c.ageInYears) : (sortBy == NAME ? c.name : c.ageInYears);
-    }
 }

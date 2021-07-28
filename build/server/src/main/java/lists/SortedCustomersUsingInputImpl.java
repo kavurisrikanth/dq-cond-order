@@ -70,7 +70,7 @@ public class SortedCustomersUsingInputImpl extends AbsDataQueryImpl {
 
   public List<NativeObj> getNativeResult(SortedCustomersUsingInputRequest request) {
     String sql =
-        "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case when :param_0 = :param_1 then (case when a._is_under_age then a._age_in_years else b._age_in_years end) else a._age_in_years end)";
+        "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case when :param_0 = :param_1 then ((case when a._is_under_age then (a._age_in_years) end), (case when NOT(a._is_under_age) then (b._age_in_years) end)) end), (case when NOT(:param_0 = :param_1) then (a._age_in_years) end)";
     Query query = em.createNativeQuery(sql);
     setParameter(query, "param_0", request.sortBy);
     setParameter(query, "param_1", CustomerSortOptions.AGE);

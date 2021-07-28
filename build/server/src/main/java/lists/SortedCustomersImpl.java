@@ -50,7 +50,7 @@ public class SortedCustomersImpl extends AbsDataQueryImpl {
 
   public List<NativeObj> getNativeResult() {
     String sql =
-        "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case when a._is_under_age then a._age_in_years else b._age_in_years end)";
+        "select a._id a0 from _customer a left join _customer b on b._id = a._guardian_id order by (case when a._is_under_age then (a._age_in_years) end), (case when NOT(a._is_under_age) then (b._age_in_years) end)";
     Query query = em.createNativeQuery(sql);
     this.logQuery(sql, query);
     List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 0);

@@ -1,6 +1,5 @@
 package lists;
 
-import classes.CustomerUtil;
 import classes.SortedCustomersUsingInput3;
 import classes.SortedCustomersUsingInput3In;
 import classes.SortedCustomersUsingInput3Request;
@@ -8,9 +7,7 @@ import gqltosql.GqlToSql;
 import gqltosql.SqlRow;
 import graphql.language.Field;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.Customer;
@@ -70,18 +67,11 @@ public class SortedCustomersUsingInput3Impl extends AbsDataQueryImpl {
     return result;
   }
 
-  public void processOrderBy(List<NativeObj> result, SortedCustomersUsingInput3Request inputs) {
-//    Function<NativeObj, Comparable<Object>> order =
-//        (c) -> 1;
-//    result.sort(Comparator.comparing(order));
-  }
-
   public List<NativeObj> getNativeResult(SortedCustomersUsingInput3Request request) {
     String sql = "select a._id a0 from _customer a";
     Query query = em.createNativeQuery(sql);
     this.logQuery(sql, query);
     List<NativeObj> result = NativeSqlUtil.createNativeObj(query.getResultList(), 0);
-    processOrderBy(result, request);
     return result;
   }
 }
